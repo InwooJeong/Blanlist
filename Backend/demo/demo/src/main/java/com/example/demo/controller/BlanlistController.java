@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,6 +71,22 @@ public class BlanlistController {
 		
 		ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().data(bdtos).build();
 		
+		return ResponseEntity.ok().body(response);
+	}
+	
+	@PutMapping
+	public ResponseEntity<?> updateBlan(@RequestBody BlanlistDTO bdto){
+		String temporaryUserID = "temporary-user";
+		
+		BlanlistEntity entity = BlanlistDTO.toEntity(bdto);
+		
+		entity.setUserId(temporaryUserID);
+		
+		List<BlanlistEntity> entities = service.update(entity);
+		List<BlanlistDTO> bdtos = entities.stream().map(BlanlistDTO::new).collect(Collectors.toList());
+		
+		ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().data(bdtos).build();
+
 		return ResponseEntity.ok().body(response);
 	}
 }

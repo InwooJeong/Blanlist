@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,21 @@ public class BlanlistService {
 	
 	public List<BlanlistEntity> retrieve(final String userId){
 		return repo.findByUserId(userId);
+	}
+	
+	public List<BlanlistEntity> update(final BlanlistEntity entity){
+		validate(entity);
+		
+		final Optional<BlanlistEntity> original = repo.findById(entity.getId());
+		
+		original.ifPresent(blan -> {
+			blan.setProduct(entity.getProduct());
+			blan.setBought(entity.isBought());
+			
+			repo.save(blan);
+		});
+		
+		return retrieve(entity.getUserId());
 	}
 	
 }
