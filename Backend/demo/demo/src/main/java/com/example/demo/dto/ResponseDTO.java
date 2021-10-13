@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ResponseDTO<T> {
+	//응답이 에러? 혹은 성공 -> 데이터
 	private String error;
 	private List<T> data;
 
