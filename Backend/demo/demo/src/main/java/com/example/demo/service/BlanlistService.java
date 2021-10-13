@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,28 @@ public class BlanlistService {
 		
 		BlanlistEntity savedEntity = repo.findById(entity.getId()).get();
 		return savedEntity.getTitle();
+	}
+	
+	public List<BlanlistEntity> create(final BlanlistEntity entity){
+		validate(entity);
+		
+		repo.save(entity);
+		log.info("Entity id : { } is saved.", entity.getId());
+		return repo.findByUserId(entity.getUserId());
+	}
+	
+	private void validate(final BlanlistEntity entity) {
+		if(entity == null) {
+			String isNull = "Entity can't be null.";
+			log.warn(isNull);
+			throw new RuntimeException(isNull);
+		}
+		
+		if(entity.getUserId() == null) {
+			String userIsNull = "Unknown user.";
+			log.warn(userIsNull);
+			throw new RuntimeException(userIsNull);
+		}
 	}
 	
 }

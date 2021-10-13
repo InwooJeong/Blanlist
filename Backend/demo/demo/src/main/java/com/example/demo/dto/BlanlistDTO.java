@@ -22,4 +22,11 @@ public class BlanlistDTO {
 		this.bought = entity.isBought();
 	}
 	
+	public static BlanlistEntity toEntity(final BlanlistDTO bdto) {
+		return BlanlistEntity.builder().id(bdto.getId())
+									   .title(bdto.getTitle())
+									   .bought(bdto.isBought())
+									   .build();
+	}
+	
 }
