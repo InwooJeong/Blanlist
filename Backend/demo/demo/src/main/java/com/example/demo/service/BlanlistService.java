@@ -49,4 +49,8 @@ public class BlanlistService {
 		}
 	}
 	
+	public List<BlanlistEntity> retrieve(final String userId){
+		return repo.findByUserId(userId);
+	}
+	
 }

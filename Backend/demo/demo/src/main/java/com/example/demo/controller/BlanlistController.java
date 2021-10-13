@@ -59,4 +59,17 @@ public class BlanlistController {
 			return ResponseEntity.badRequest().body(response);
 		}
 	}
+	
+	@GetMapping
+	public ResponseEntity<?> retrieveBlanList(){
+		// temporary version. 일단 상관없이 부트로 구현 후 프론트엔드(리액트) 합체만 생각
+		String temporaryUserID = "temporary-user";
+		
+		List<BlanlistEntity> entities = service.retrieve(temporaryUserID);
+		List<BlanlistDTO> bdtos = entities.stream().map(BlanlistDTO::new).collect(Collectors.toList());
+		
+		ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().data(bdtos).build();
+		
+		return ResponseEntity.ok().body(response);
+	}
 }
