@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.BlanlistEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,5 +14,12 @@ import lombok.NoArgsConstructor;
 public class BlanlistDTO {
 	private String id;
 	private String title;
-	private String bought;
+	private boolean bought;
+	
+	public BlanlistDTO(final BlanlistEntity entity) {
+		this.id = entity.getId();
+		this.title = entity.getTitle();
+		this.bought = entity.isBought();
+	}
+	
 }
