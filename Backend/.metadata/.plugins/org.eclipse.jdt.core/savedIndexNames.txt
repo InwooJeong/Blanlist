@@ -66,7 +66,6 @@ INDEX VERSION 1.131+C:\Users\sinth\Desktop\Project\BlanList_v1\Backend\.metadata
 1886428473.index
 212375262.index
 3448498236.index
-3435648363.index
 2875350115.index
 4070214530.index
 734487228.index

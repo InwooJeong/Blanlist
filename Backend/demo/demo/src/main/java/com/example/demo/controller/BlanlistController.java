@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -88,5 +89,27 @@ public class BlanlistController {
 		ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().data(bdtos).build();
 
 		return ResponseEntity.ok().body(response);
+	}
+	
+	@DeleteMapping
+	public ResponseEntity<?> deleteBlan(@RequestBody BlanlistDTO bdto){
+		try {
+			String temporaryUserID = "temporary-user";
+			
+			BlanlistEntity entity = BlanlistDTO.toEntity(bdto);
+			
+			entity.setUserId(temporaryUserID);
+			
+			List<BlanlistEntity> entities = service.delete(entity);
+			List<BlanlistDTO> bdtos = entities.stream().map(BlanlistDTO::new).collect(Collectors.toList());
+			
+			ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().data(bdtos).build();
+			
+			return ResponseEntity.ok().body(response);
+		}catch (Exception e) {
+			String error = e.getMessage();
+			ResponseDTO<BlanlistDTO> response = ResponseDTO.<BlanlistDTO>builder().error(error).build();
+			return ResponseEntity.badRequest().body(response);
+		}
 	}
 }

@@ -69,4 +69,20 @@ public class BlanlistService {
 		return retrieve(entity.getUserId());
 	}
 	
+	public List<BlanlistEntity> delete(final BlanlistEntity entity){
+		validate(entity);
+		
+		try {
+			repo.delete(entity);
+		}catch (Exception e) {
+			String delErr = "can't delete entity";
+			
+			log.error(delErr, entity.getId(), e);
+			
+			throw new RuntimeException(delErr +" : "+ entity.getId());
+		}
+		
+		return retrieve(entity.getUserId());
+	}
+	
 }
