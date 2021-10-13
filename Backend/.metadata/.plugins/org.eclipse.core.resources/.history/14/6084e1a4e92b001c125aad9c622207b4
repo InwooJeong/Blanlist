@@ -19,12 +19,12 @@ public class BlanlistService {
 	
 	public String testService() {
 		
-		BlanlistEntity entity = BlanlistEntity.builder().product("My first dream lego").build();
+		BlanlistEntity entity = BlanlistEntity.builder().title("My first dream lego").build();
 		
 		repo.save(entity);
 		
 		BlanlistEntity savedEntity = repo.findById(entity.getId()).get();
-		return savedEntity.getProduct();
+		return savedEntity.getTitle();
 	}
 	
 	public List<BlanlistEntity> create(final BlanlistEntity entity){

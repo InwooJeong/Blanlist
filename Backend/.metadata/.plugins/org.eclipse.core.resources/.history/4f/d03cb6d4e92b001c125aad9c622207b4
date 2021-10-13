@@ -13,12 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class BlanlistDTO {
 	private String id;
-	private String product;
+	private String title;
 	private boolean bought;
 	
 	public BlanlistDTO(final BlanlistEntity entity) {
 		this.id = entity.getId();
-		this.product = entity.getProduct();
+		this.title = entity.getProduct();
 		this.bought = entity.isBought();
 	}
 	

@@ -24,6 +24,6 @@ public class BlanlistEntity {
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 	private String userId;
-	private String product;
+	private String title;
 	private boolean bought;
 }

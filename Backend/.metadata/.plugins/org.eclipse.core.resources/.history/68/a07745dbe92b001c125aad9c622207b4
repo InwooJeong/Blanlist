@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class BlanlistDTO {
 	private String id;
-	private String product;
+	private String title;
 	private boolean bought;
 	
 	public BlanlistDTO(final BlanlistEntity entity) {
