@@ -9,7 +9,6 @@
 		<item key="ShowViewDialog.STORE_SELECTED_VIEW_ID" value="org.eclipse.ui.console.ConsoleView"/>
 		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="General"/>
-			<item value="XML"/>
 		</list>
 	</section>
 </section>
